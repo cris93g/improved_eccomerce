@@ -3,14 +3,17 @@ import logo from './logo.svg';
 import './App.css';
 import {HashRouter as Router} from "react-router-dom"
 import routes from "./routes"
-
+import store from "./Redux/store"
+import {Provider} from "react-redux"
 function App() {
   return (
-    <Router>
-      <div className="App">
+    <Provider store={store}>
+      <Router>
+        <div className="App">
         {routes}
-      </div>
-    </Router>
+        </div>
+      </Router>
+    </Provider>
   );
 }
 
