@@ -21,7 +21,8 @@ export function add_item(item){
 
 const initial_state={
     items:[],
-    is_loading:false,  
+    is_loading:false,
+    
 }
 
 export default function item_reducer(state = initial_state,action){
