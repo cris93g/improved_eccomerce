@@ -40,7 +40,7 @@ export default function user_reducer(state=initial_state,action){
 			return {
 				...state,
 				user: action.payload.data,
-				is_auth: true
+				isAuthed: true
 			};
 
 		default:
