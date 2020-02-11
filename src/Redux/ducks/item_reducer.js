@@ -25,12 +25,14 @@ const initial_state = {
 };
 
 export default function item_reducer(state = initial_state, action) {
+  console.log(action);
+
   switch (action.type) {
-    case `${READ_ITEMS}_PENDING`:
+    case `READ_ITEMS_PENDING`:
       return { ...state, is_loading: true };
-    case `${READ_ITEMS}_COMPLETED`:
+    case `READ_ITEMS_FULFILLED`:
       return { ...state, items: action.payload.data, is_loading: false };
-    case `${READ_ITEMS}_REJECTED`:
+    case `READ_ITEMS_REJECTED`:
       return { ...state, is_loading: true };
     default:
       return state;
