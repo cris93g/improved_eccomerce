@@ -2,21 +2,19 @@ require('dotenv').config();
 const express = require('express');
 const massive = require('massive');
 const { json } = require('body-parser');
-const cors = require("cors")
-const routes = require("./Routes/Routes")
+const cors = require('cors');
+const routes = require('./Routes/Routes');
 const app = express();
 const port = process.env.PORT || 3001;
-const passport = require("passport");
-const session = require("express-session");
+const passport = require('passport');
+const session = require('express-session');
 
+app.use(cors());
+app.use(json());
 
-app.use(cors())
-app.use(json())
-
-
-massive(process.env.CONNECTION_STRING).then(dbinstance =>{
-    app.set("db",dbinstance)
-})
+massive(process.env.CONNECTION_STRING).then((dbinstance) => {
+	app.set('db', dbinstance);
+});
 
 app.use(
 	session({
@@ -28,10 +26,11 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
+passport.deserializeUser((user, done) => {
+	done(null, user);
+});
 
-
-
-routes(app)
+routes(app);
 
 app.listen(port, () => {
 	console.log(`app is listening on port ${port}`);
